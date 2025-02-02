@@ -1,13 +1,13 @@
 {
   "project_info": {
     "project_number": "366600059083",
-    "project_id": "matjip-140e9",
-    "storage_bucket": "matjip-140e9.firebasestorage.app"
+    "project_id": "${PROJECT_ID}",
+    "storage_bucket": "${STORAGE_BUCKET}"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:366600059083:android:e2d4375181546c6dae034e",
+        "mobilesdk_app_id": "${MOBILESDK_APP_ID}",
         "android_client_info": {
           "package_name": "com.pscshin.matjip"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBI--XwIz1nL6O0CH716mh3GPZvZPM9jLA"
+          "current_key": "${GOOGLE_SERVICES_API_KEY}"
         }
       ],
       "services": {
