@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             MatjipTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "Peter",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -42,6 +42,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MatjipTheme {
-        Greeting("Android")
+        Greeting("Peter")
     }
 }

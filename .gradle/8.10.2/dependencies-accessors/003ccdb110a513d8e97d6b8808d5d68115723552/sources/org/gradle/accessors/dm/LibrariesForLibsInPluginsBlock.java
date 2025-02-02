@@ -23,6 +23,7 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
 
     private final AbstractExternalDependencyFactory owner = this;
     private final AndroidxLibraryAccessors laccForAndroidxLibraryAccessors = new AndroidxLibraryAccessors(owner);
+    private final FirebaseLibraryAccessors laccForFirebaseLibraryAccessors = new FirebaseLibraryAccessors(owner);
     private final VersionAccessors vaccForVersionAccessors = new VersionAccessors(providers, config);
     private final BundleAccessors baccForBundleAccessors = new BundleAccessors(objects, providers, config, attributesFactory, capabilityNotationParser);
     private final PluginAccessors paccForPluginAccessors = new PluginAccessors(providers, config);
@@ -55,6 +56,17 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
     public AndroidxLibraryAccessors getAndroidx() {
         org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
         return laccForAndroidxLibraryAccessors;
+    }
+
+    /**
+     * Group of libraries at <b>firebase</b>
+     *
+     * @deprecated Will be removed in Gradle 9.0.
+     */
+    @Deprecated
+    public FirebaseLibraryAccessors getFirebase() {
+        org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+        return laccForFirebaseLibraryAccessors;
     }
 
     /**
@@ -472,6 +484,30 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
 
     }
 
+    /**
+     * @deprecated Will be removed in Gradle 9.0.
+     */
+    @Deprecated
+    public static class FirebaseLibraryAccessors extends SubDependencyFactory {
+
+        public FirebaseLibraryAccessors(AbstractExternalDependencyFactory owner) { super(owner); }
+
+        /**
+         * Dependency provider for <b>auth</b> with <b>com.google.firebase:firebase-auth</b> coordinates and
+         * with version reference <b>firebaseAuth</b>
+         * <p>
+         * This dependency was declared in catalog libs.versions.toml
+         *
+         * @deprecated Will be removed in Gradle 9.0.
+         */
+        @Deprecated
+        public Provider<MinimalExternalModuleDependency> getAuth() {
+            org.gradle.internal.deprecation.DeprecationLogger.deprecateBehaviour("Accessing libraries or bundles from version catalogs in the plugins block.").withAdvice("Only use versions or plugins from catalogs in the plugins block.").willBeRemovedInGradle9().withUpgradeGuideSection(8, "kotlin_dsl_deprecated_catalogs_plugins_block").nagUser();
+            return create("firebase.auth");
+        }
+
+    }
+
     public static class VersionAccessors extends VersionFactory  {
 
         public VersionAccessors(ProviderFactory providers, DefaultVersionCatalog config) { super(providers, config); }
@@ -527,6 +563,26 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
         public Provider<String> getEspressoCore() { return getVersion("espressoCore"); }
 
         /**
+         * Version alias <b>firebaseAuth</b> with value <b>23.1.0</b>
+         * <p>
+         * If the version is a rich version and cannot be represented as a
+         * single version string, an empty string is returned.
+         * <p>
+         * This version was declared in catalog libs.versions.toml
+         */
+        public Provider<String> getFirebaseAuth() { return getVersion("firebaseAuth"); }
+
+        /**
+         * Version alias <b>googleGmsGoogleServices</b> with value <b>4.4.2</b>
+         * <p>
+         * If the version is a rich version and cannot be represented as a
+         * single version string, an empty string is returned.
+         * <p>
+         * This version was declared in catalog libs.versions.toml
+         */
+        public Provider<String> getGoogleGmsGoogleServices() { return getVersion("googleGmsGoogleServices"); }
+
+        /**
          * Version alias <b>junit</b> with value <b>4.13.2</b>
          * <p>
          * If the version is a rich version and cannot be represented as a
@@ -580,6 +636,7 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
 
     public static class PluginAccessors extends PluginFactory {
         private final AndroidPluginAccessors paccForAndroidPluginAccessors = new AndroidPluginAccessors(providers, config);
+        private final GooglePluginAccessors paccForGooglePluginAccessors = new GooglePluginAccessors(providers, config);
         private final KotlinPluginAccessors paccForKotlinPluginAccessors = new KotlinPluginAccessors(providers, config);
 
         public PluginAccessors(ProviderFactory providers, DefaultVersionCatalog config) { super(providers, config); }
@@ -589,6 +646,13 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
          */
         public AndroidPluginAccessors getAndroid() {
             return paccForAndroidPluginAccessors;
+        }
+
+        /**
+         * Group of plugins at <b>plugins.google</b>
+         */
+        public GooglePluginAccessors getGoogle() {
+            return paccForGooglePluginAccessors;
         }
 
         /**
@@ -611,6 +675,48 @@ public class LibrariesForLibsInPluginsBlock extends AbstractExternalDependencyFa
          * This plugin was declared in catalog libs.versions.toml
          */
         public Provider<PluginDependency> getApplication() { return createPlugin("android.application"); }
+
+    }
+
+    public static class GooglePluginAccessors extends PluginFactory {
+        private final GoogleGmsPluginAccessors paccForGoogleGmsPluginAccessors = new GoogleGmsPluginAccessors(providers, config);
+
+        public GooglePluginAccessors(ProviderFactory providers, DefaultVersionCatalog config) { super(providers, config); }
+
+        /**
+         * Group of plugins at <b>plugins.google.gms</b>
+         */
+        public GoogleGmsPluginAccessors getGms() {
+            return paccForGoogleGmsPluginAccessors;
+        }
+
+    }
+
+    public static class GoogleGmsPluginAccessors extends PluginFactory {
+        private final GoogleGmsGooglePluginAccessors paccForGoogleGmsGooglePluginAccessors = new GoogleGmsGooglePluginAccessors(providers, config);
+
+        public GoogleGmsPluginAccessors(ProviderFactory providers, DefaultVersionCatalog config) { super(providers, config); }
+
+        /**
+         * Group of plugins at <b>plugins.google.gms.google</b>
+         */
+        public GoogleGmsGooglePluginAccessors getGoogle() {
+            return paccForGoogleGmsGooglePluginAccessors;
+        }
+
+    }
+
+    public static class GoogleGmsGooglePluginAccessors extends PluginFactory {
+
+        public GoogleGmsGooglePluginAccessors(ProviderFactory providers, DefaultVersionCatalog config) { super(providers, config); }
+
+        /**
+         * Plugin provider for <b>google.gms.google.services</b> with plugin id <b>com.google.gms.google-services</b> and
+         * with version reference <b>googleGmsGoogleServices</b>
+         * <p>
+         * This plugin was declared in catalog libs.versions.toml
+         */
+        public Provider<PluginDependency> getServices() { return createPlugin("google.gms.google.services"); }
 
     }
 
