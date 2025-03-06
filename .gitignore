@@ -56,3 +56,6 @@ deviceStreaming.xml
 # Ignore compiled and system files
 *.bin
 file-system.probe
+
+.DS_Store
+gradle/
