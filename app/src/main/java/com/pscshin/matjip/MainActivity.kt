@@ -5,12 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.navigation.compose.rememberNavController
+import com.pscshin.matjip.ui.navigation.BottomNavigationBar
+import com.pscshin.matjip.ui.navigation.NavigationHost
 import com.pscshin.matjip.ui.theme.MatjipTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +20,22 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MatjipTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Peter",
-                        modifier = Modifier.padding(innerPadding)
+                val navController = rememberNavController()
+                Surface(color = Color.White) {
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        bottomBar = {
+                            BottomNavigationBar(navController = navController)
+                        },
+                        content = { padding ->
+                            NavigationHost(
+                                navController = navController,
+                                padding = padding
+                            )
+                        }
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MatjipTheme {
-        Greeting("Peter")
     }
 }

@@ -29,3 +29,30 @@ replay_pid*
 .gitignore
 local.properties
 app/google-services.json
+
+# Ignore Gradle-related files
+.gradle/
+.gradle/*/
+.gradle/**/*.bin
+*.lock
+executionHistory.*
+fileHashes.*
+metadata.*
+resourceHashesCache.*
+sha1-checksums.bin
+
+# Ignore build output files
+build/
+buildOutputCleanup.lock
+outputFiles.bin
+checksums.lock
+
+# Ignore IDE-specific files (Android Studio / IntelliJ)
+.idea/
+*.iml
+misc.xml
+deviceStreaming.xml
+
+# Ignore compiled and system files
+*.bin
+file-system.probe
